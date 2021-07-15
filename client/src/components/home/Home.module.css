@@ -1,0 +1,89 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
+.body{
+  background-image:url('./huellas2.png');
+  width:100vw;
+  min-height:38vw;
+  height: 100%;
+  background-size: 100%;
+}
+
+.direccion{
+  display: flex;
+  flex-direction: row;
+  flex-flow: row wrap;
+  padding: 10px;
+}   
+
+.Card {
+    font-family: Shadows Into Light;
+    width: 250px;
+    height: 320px;
+    border-radius: 20px;
+    border-color: rgb(92, 87, 87);
+    margin: 10px;
+    margin-left: 55px;
+    box-shadow: 0 2px 2px 2px rgba(255, 255, 255, 0.829);
+    background-color: rgba(88, 85, 85, 0.822);
+    transition: all 0.25s; 
+    text-align:center;
+}
+
+.Card:hover{
+   transform: translateX(20px);
+   box-shadow: 0 5px 10px rgb(196, 192, 192);
+}
+
+.IMG{
+  border-radius: 50px; 
+  width: 150px; 
+  height:150px;
+  margin-top: 10px; 
+}
+
+.Title{
+ font-size: 10px;
+}
+
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  margin-left: 30% ;
+}
+
+.pageNumbers li {
+  padding: 10px;
+  border: 1px solid rgb(255, 252, 102);
+  cursor: pointer;
+  background-color: #303236;
+}
+
+.pageNumbers li.active {
+  background-color: rgb(250, 250, 250);
+  color: black;
+}
+
+.pageNumbers li button {
+  background-color: transparent;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.pageNumbers li button:hover {
+  background-color: rgba(51, 48, 48, 0.746);
+  color: rgb(105, 89, 89);
+}
+.pageNumbers li button:focus {
+  outline: none;
+}
+
+.loadmore {
+  padding: 1rem;
+  background-color: transparent;
+
+  color: white;
+  font-size: 1.2rem;
+  border: 1px solid white;
+  cursor: pointer;
+}
