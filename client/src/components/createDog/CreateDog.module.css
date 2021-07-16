@@ -9,6 +9,7 @@ background-size: 100%;}
     text-align:center;
     display: flex;
     flex-direction: row;
+    margin-left: 450px;
 }
 
 .button{
@@ -18,6 +19,15 @@ background-size: 100%;}
     border-radius: 20px;
     margin-top: 25px;
     margin-left: 5px;
+}
+.errorMsg {
+  text-align: center;
+  color: #ff0000;
+  background-color: black;
+  font-size: 10px;
+  font-weight: bold;
+  text-shadow: 1px 1px #000000;
+  letter-spacing: 1px;
 }
 
 .button:hover{

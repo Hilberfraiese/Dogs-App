@@ -52,10 +52,11 @@ const reducer = (state = initialState, action) =>{
             temps: action.payload
         }
     case "GET_ID":
-          return {
-              ...state,
-              dogsDetail: action.payload
-          }
+        let found = state.dogsLoaded.filter((element) => element.id === Number(action.payload) || element.id === action.payload);
+        return {
+          ...state,
+          dogDetails: found}
+          
     case "FILTER":
         return {
             ...state,

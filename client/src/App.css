@@ -1,5 +1,11 @@
 .App {
   text-align: center;
+  z-index: 1;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left:0;
+  cursor: url(huellaMouse.png), auto;
 }
 
 .App-logo {

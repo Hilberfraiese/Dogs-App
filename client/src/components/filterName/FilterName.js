@@ -1,8 +1,10 @@
 import React, {useState} from "react";
 import { useSelector } from "react-redux";
 import style from "../home/Home.module.css";
+import { Link } from "react-router-dom";
 
 export default function FilterName() {
+ 
   const dogs = useSelector((state) => state.dogLoaded);
   const url = "https://i.pinimg.com/564x/61/7e/63/617e63bea91121a61722cef2ebf96e49.jpg"
 
@@ -78,9 +80,6 @@ export default function FilterName() {
   }
   //fin paginacion
 
-
- 
-
   return (
     <div className = {style.body}>
       <li className = {style.pageNumbers}>
@@ -92,9 +91,11 @@ export default function FilterName() {
         {currentItems?.map((e) => {
           return (
             <div className = {style.Card}>
+            <Link to = {`/home/${e.id}`} className = {style.link}>
               <h3> {e.name} </h3>
               <img className={style.IMG} src={e.image.url}/> 
               <h4>{e.temperament}</h4> 
+            </Link>
             </div>
           );
         })} 

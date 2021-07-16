@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import {getDogs} from "../../actions"
 import { useDispatch, useSelector } from "react-redux";
 import style from "./Home.module.css"
+import { Link } from "react-router-dom";
 
 
 
@@ -26,9 +27,11 @@ export default function Home(){
        }
     }
   })
+
+  
   
   //paginacion
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(1); // sera la pagina donde estamos posicionados
   const [itemsPerPage, setitemsPerPage]= useState(8);
 
   const [pageNumberLimit, setpageNumberLimit] = useState(10)
@@ -40,14 +43,13 @@ export default function Home(){
      setCurrentPage(Number(event.target.id));
   }
 
-  const pages = [];
+  const pages = []; //cantidad de paginas que vamos a tener
     
-    
-    for (let i = 1; i <= Math.ceil(dogs?.length / itemsPerPage); i++) {
+    for (let i = 1; i <= Math.ceil(dogs?.length / itemsPerPage); i++) { //math.ceil redondea para arriba
         pages.push(i);
     }
-    const indexOfLastItem = currentPage * itemsPerPage;
-    const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+    const indexOfLastItem = currentPage * itemsPerPage; //indica cual es la ultima pagina
+    const indexOfFirstItem = indexOfLastItem - itemsPerPage; 
     const currentItems = dogs?.slice(indexOfFirstItem, indexOfLastItem);
 
     const renderPageNumbers = pages.map(number => {
@@ -66,7 +68,7 @@ export default function Home(){
             return null;
         }
 
-    })
+    }) // se fija en que pagina esta posicionado para renderizar el 
 
 
     const handleNext = () => {
@@ -93,10 +95,12 @@ export default function Home(){
       return(<div className = {style.direccion}> 
          {dog?.map((perrito) => {
          return (
-            <div className= {style.Card}>
+             <div className= {style.Card}>
+             <Link to = {`/home/${perrito.id}`} className = {style.link}>
               <h3> {perrito.name} </h3>
               <img className={style.IMG} src={perrito.image.url} />
               <h4>{perrito.temperament}</h4>
+           </Link>
             </div>
            ); 
           })

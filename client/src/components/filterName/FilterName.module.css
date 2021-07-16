@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
+
 .body{
     background-image:url('../home/huellas2.png');
     width:100vw;
@@ -5,19 +7,26 @@
     display: flex;
   
   }
-
-  
+  .error{
+    margin-left: 40px;
+    text-align: center;
+  }
+  .link{
+    text-decoration: none;
+    color: black;
+  }
   .Card {
       margin-left: 20px;
       width: 250px;
-      height: 320px;
+      height: 340px;
       border-radius: 20px;
       border-color: rgb(92, 87, 87);
       margin: 50px;
       box-shadow: 0 2px 2px 2px rgba(255, 255, 255, 0.829);
-      background-color: rgba(88, 85, 85, 0.822);
+      background-color: rgba(216, 218, 138, 0.822);
       transition: all 0.25s; 
       text-align:center;
+      font-family: Shadows Into Light Two;
   }
   
   .Card:hover{

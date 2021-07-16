@@ -74,7 +74,11 @@ function Orden() {
     }
 
     function handleSelect(e){
-        dispatch(getSource(e.target.value))
+        if(e.target.value === 'null')
+        { return alert("Please insert a valid value")}
+        else{
+         dispatch(getSource(e.target.value))
+        }
     }
 
 
@@ -110,8 +114,8 @@ function Orden() {
 
             <div  >
                 <form onSubmit={handleSubmit} >
-                    <label>Filter by temps </label><br />
-                    <select onChange={handleChange} name="temperaments" value={selectedTemp} >
+                    <label className={estilo.label}>Filter by temps </label><br />
+                    <select className={estilo.select} onChange={handleChange} name="temperaments" value={selectedTemp} >
                         {temp?.map(t => {
                             return (
                                 <option value={t.name}>{t.name}</option>
@@ -119,7 +123,7 @@ function Orden() {
                         })}
                     </select>
                     
-                    <button type="submit" > Filter</button>
+                    <button type="submit" className={estilo.button2} > Filter</button>
                 </form>
             </div>
 
@@ -127,10 +131,10 @@ function Orden() {
 
            <div>
                <form>
-                   <label>Source</label>
+                   <label className={estilo.label}>Source</label>
                    <br />
-                   <select onChange={handleSelect}>
-                       <option value="''">Select</option>
+                   <select className={estilo.select} onChange={handleSelect}>
+                       <option value="null">Select</option>
                        <option value="DB">DB</option>
                        <option value="API">API</option>
                        <option value="ALL">ALL</option>

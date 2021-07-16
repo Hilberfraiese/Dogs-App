@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light+Two&display=swap');
 .navbar {
+    font-family: Shadows Into Light; 
     height: 120px;
     width: 100%;
     background-color: #303236;
@@ -7,7 +9,15 @@
     padding: 0 20px;
     box-sizing: border-box;
 }
-
+.cartel{
+  display: flex;
+  align-items: center;
+  justify-content: center;  
+  text-align: center;
+  margin-left:-25px;
+  width: 250px;
+  height: 250px;
+}
 .list {
     list-style: none;
     display: flex;
@@ -24,20 +34,24 @@
   justify-content: center;  
   text-align: center;
   margin-left: 20px;
-  margin-right: 150px;
+  margin-right: 0px;
   width: 95px;
   height: 95px;
 }
 
 .btn{
+  font-family: Architects Daughter;
   color: solid black;
   border-color: solid black;
   background-color: rgb(246, 255, 126);
   border-radius: 999px;
   margin-top: 25px;
-  margin-left: 5px;
+  margin-left: -25px;
   width: 70px;
   height: 60px;
+  color: solid black;
+    font-size: 13px;
+    font-weight: 800;
 }
 
 .btn:hover{

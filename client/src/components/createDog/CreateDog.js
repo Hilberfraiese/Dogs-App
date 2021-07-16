@@ -29,16 +29,15 @@ function validateForm(input) {
   if (!input.life_span) {
     errors.life_span = "Type a valid life span";
   } else if (!/\d{1,2}-\d{1,2}/g.test(input.life_span)) {
-    errors.life_spane = "Life span must have min-max values. Example: '25-30'";
+    errors.life_span = "Life span must have min-max values. Example: '25-30'";
   } else {
-    errors.life_spane = "";
+    errors.life_span = "";
   }
   return errors;
 }
 
 export default function CreateDog() {
   const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
   const [state, setState] = useState({
     name: "",
     height: "",
@@ -47,10 +46,8 @@ export default function CreateDog() {
     temperaments: [],
   });
 
-  const dispatch = useDispatch();
-
   const temp = useSelector((state) => state.temps);
-
+ 
   const handleInputChange = (e) => {
     setState({
       ...state,
@@ -64,27 +61,20 @@ export default function CreateDog() {
     );
   };
 
-  function onFocus(ev) {
-    setTouched({
-      ...touched,
-      [ev.target.name]: true,
-    });
-  }
-
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (!errors.name && !errors.weight && !errors.height && !errors.age) {
-      await axios.post("http://localhost:3001/dog", state);
-      setState({
+    if (!errors.name && !errors.weight && !errors.height && !errors.life_span) {
+      alert("Your breed has been created successfully");
+      axios.post("http://localhost:3001/dog", state)
+      .then(setState({
         name: "",
         height: "",
         weight: "",
         life_span: "",
         temperaments: [],
-      });
-      alert("Your breed has been created successfully");
+      }))
     } else {
-      alert("Something went wrong. Please try again.");
+      return alert("Something went wrong. Please try again.");
     }
   };
 
@@ -108,6 +98,7 @@ export default function CreateDog() {
     }));
   }
 
+
   function getNames(arr) {
     let names = [];
     temp?.forEach((t) => {
@@ -124,45 +115,61 @@ export default function CreateDog() {
     <div className={estilo.body}>
       <div className={estilo.container}>
         <form onSubmit={handleSubmit}>
-          <label>Name</label>
-          <input
-            name="name"
-            onChange={handleInputChange}
-            value={state.name}
-            placeholder = "insert name"
-            className={estilo.input}
-            required
-          />
+          <div>
+            <label>Name</label>
+            <input
+              name="name"
+              type="text"
+              onChange={handleInputChange}
+              value={state.name}
+              placeholder="insert name"
+              className={estilo.input}
+              required
+            />
+            <p className = {estilo.errorMsg}>{errors.name}</p>
+          </div>
           <br />
-          <label>Height</label>
-          <input
-            name="height"
-            onChange={handleInputChange}
-            value={state.height}
-            className={estilo.input}
-            placeholder = "insert height"
-            required
-          />
+          <div>
+            <label>Height</label>
+            <input
+              name="height"
+              type="text"
+              onChange={handleInputChange}
+              value={state.height}
+              className={estilo.input}
+              placeholder="insert height"
+              required
+            />
+           <p className = {estilo.errorMsg}>{errors.height}</p>
+          </div>
           <br />
-          <label>Weight</label>
-          <input
-            name="weight"
-            onChange={handleInputChange}
-            value={state.weight}
-            placeholder = "insert weight"
-            className={estilo.input}
-            required
-          />
+          <div>
+            <label>Weight</label>
+            <input
+              name="weight"
+              onChange={handleInputChange}
+              value={state.weight}
+              type = "text"
+              placeholder="insert weight"
+              className={estilo.input}
+              required
+            />
+            <p className = {estilo.errorMsg}>{errors.weight}</p>
+          </div>
           <br />
-          <label>Life Sp</label>
-          <input
-            name="life_span"
-            className={estilo.input}
-            onChange={handleInputChange}
-            value={state.life_span}
-            placeholder = "insert life span"
-            required
-          />
+          <div>
+            <label>Life Span</label>
+            <input
+              name="life_span"
+              type="text"
+              className={estilo.input}
+              onChange={handleInputChange}
+              value={state.life_span}
+              placeholder="insert life span"
+              required
+            />
+            <p className = {estilo.errorMsg}>{errors.life_span}</p>
+          </div>
           <br />
           <br />
           <select
@@ -183,9 +190,7 @@ export default function CreateDog() {
             {state.temperaments.map((t) => (
               <p id={t}>
                 {getNames([t])}
-                <button
-                  onClick={(e) => deleteTemp(e, t)}
-                >x</button>
+                <button onClick={(e) => deleteTemp(e, t)}>x</button>
               </p>
             ))}
           </div>
@@ -195,7 +200,7 @@ export default function CreateDog() {
             onClick={handleSubmit}
             className={estilo.button}
           >
-            ¡Crear!
+            ¡Creat!
           </button>
         </form>
       </div>

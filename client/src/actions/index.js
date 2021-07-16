@@ -19,6 +19,13 @@ export function getName(name) {
 }
 }
 
+export function getId(id) {
+    return function (dispatch) {
+     dispatch({type: "GET_ID", payload: id})
+    }
+}
+
+
 export function getTemp() {
   return function (dispatch) {
       return axios.get('http://localhost:3001/temperament')
@@ -69,47 +76,61 @@ export function getLight() {
   return function (dispatch) {
       return axios.get('http://localhost:3001/dogs')
           .then(dog => {
-              const orderLight = dog.data.sort((a, b) => {
-                  if (typeof dog.data.id === 'string') {
-                      if (a.weight > b.weight) return 1
-                      if (a.weight < b.weight) return -1
-                      return 0
-                  } else {
-                      if (parseInt(a.weight.metric) > parseInt(b.weight.metric)) return 1
-                      if (parseInt(a.weight.metric) < parseInt(b.weight.metric)) return -1
-                      return 0
-                  }
-              })
-              dispatch({
-                  type: 'ORDER_LIGHT',
-                  payload: orderLight
-              })
-          })
+            const orderLight = dog.data.sort((a, b) => {
+           
+                if (!a.weight.metric) {
+                  console.log("entre al if")  
+                  const metric = a.weight
+                  a.weight = metric;
+                  console.log(a.weight)
+                }  
+                
+                if (!b.weight.metric) {
+                    console.log("entre al if")  
+                    const metric = {"metric": b.weight}
+                    b.weight = metric;
+                    console.log(b.weight)
+                  }   
+            
+                console.log(a.id , a.weight) 
+                console.log(b.id , b.weight) 
+                if (parseInt(a.weight.metric) > parseInt(b.weight.metric)) return 1
+                if (parseInt(a.weight.metric) < parseInt(b.weight.metric)) return -1
+                return 0
+                
+            })
+            dispatch({
+                type: 'ORDER_LIGHT',
+                payload: orderLight
+            })
+        })
   }
 }
 
-export function getHeavy() {
-  return function (dispatch) {
-      return axios.get('http://localhost:3001/dogs')
-          .then(dog => {
-              const orderHeavy = dog.data.sort((b, a) => {
-                  if (typeof dog.data.id === 'string') {
-                      if (a.weight > b.weight) return 1
-                      if (a.weight < b.weight) return -1
-                      return 0
-                  } else {
-                      if (parseInt(a.weight.metric) > parseInt(b.weight.metric)) return 1
-                      if (parseInt(a.weight.metric) < parseInt(b.weight.metric)) return -1
-                      return 0
-                  }
-              })
-              dispatch({
-                  type: 'ORDER_HEAVY',
-                  payload: orderHeavy
-              })
-          })
-  }
+export  function getHeavy() {
+      return function (dispatch) {
+          return axios.get('http://localhost:3001/dogs')
+              .then(dog => {
+                const orderLight = dog.data.sort((b, a) => {
+                    if (b.id.length>5) {
+                        console.log("entre al if")  
+                        const metric = {"metric": b.weight}
+                        b.weight = metric;
+                        console.log(b.weight)
+                    } 
+                        if (parseInt(b.weight.metric) < parseInt(a.weight.metric)) return 1
+                        if (parseInt(b.weight.metric) > parseInt(a.weight.metric)) return -1
+                        return 0
+                    
+                })
+                dispatch({
+                    type: 'ORDER_LIGHT',
+                    payload: orderLight
+                })
+            })
+      }
 }
+
 
 
 export function filter(array) {
