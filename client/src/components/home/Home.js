@@ -17,8 +17,7 @@ export default function Home(){
     dispatch(getDogs())
   },[]
   ) 
-  console.log(dogs)
-   dogs?.map((e) =>{
+   filter?.map((e) =>{
      if(e.id.length > 4){
        e.image = {url}
        e.temperament= ""
@@ -28,7 +27,7 @@ export default function Home(){
     }
   })
 
-  
+  console.log(dogs)
   
   //paginacion
   const [currentPage, setCurrentPage] = useState(1); // sera la pagina donde estamos posicionados
@@ -45,12 +44,12 @@ export default function Home(){
 
   const pages = []; //cantidad de paginas que vamos a tener
     
-    for (let i = 1; i <= Math.ceil(dogs?.length / itemsPerPage); i++) { //math.ceil redondea para arriba
+    for (let i = 1; i <= Math.ceil(filter?.length / itemsPerPage); i++) { //math.ceil redondea para arriba
         pages.push(i);
     }
     const indexOfLastItem = currentPage * itemsPerPage; //indica cual es la ultima pagina
     const indexOfFirstItem = indexOfLastItem - itemsPerPage; 
-    const currentItems = dogs?.slice(indexOfFirstItem, indexOfLastItem);
+    const currentItems = filter?.slice(indexOfFirstItem, indexOfLastItem);
 
     const renderPageNumbers = pages.map(number => {
         if (number < maxPageNumberLimit + 1 && number > minPageNumberLimit) {
@@ -131,7 +130,7 @@ export default function Home(){
                 </li>
          </div>
 
-     {filter?.length > 0 ?renderDogs(filter):renderDogs(currentItems)}
+     {renderDogs(currentItems)}
      </div>
     )
 }

@@ -10,14 +10,14 @@ const ReduxWrapper = ({ children }) => (
   <Provider store={store}>
     {children}
   </Provider>
-);
+); 
 
 
 configure({adapter: new Adapter()});
 
 describe('<CreateDog /> Mounted', () => {
   
-  it('El formulario debe tener un label que diga: "Add turistic activity:"', () => {
+  it('El formulario debe tener un label que diga: "Name"', () => {
       const { container } = render(<CreateDog/>, 
         { wrapper: ReduxWrapper },
         );

@@ -25,7 +25,10 @@
     font-size: 13px;
     font-weight: 800;
 }
-
+.select{
+  background-color: rgb(246, 255, 126);
+  border-radius: 2px;
+}
 
 .button2{
     font-family: Architects Daughter;

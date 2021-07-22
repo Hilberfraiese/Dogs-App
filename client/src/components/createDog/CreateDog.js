@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import estilo from "./CreateDog.module.css";
+import {Button} from "@material-ui/core"
 import { useDispatch, useSelector } from "react-redux";
 
 function validateForm(input) {
@@ -63,6 +64,7 @@ export default function CreateDog() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(state)
     if (!errors.name && !errors.weight && !errors.height && !errors.life_span) {
       alert("Your breed has been created successfully");
       axios.post("http://localhost:3001/dog", state)
@@ -177,7 +179,8 @@ export default function CreateDog() {
             onChange={(e) => handleSelect(e)}
             required
             value={state.temperaments}
-            className="form-control"
+            className = {estilo.select}
+            
           >
             {temp?.map((e) => (
               <option value={e.id} key={e.id}>
@@ -186,22 +189,24 @@ export default function CreateDog() {
             ))}
           </select>
           <br />
-          <div>
+          <div className = {estilo.countemp}>
             {state.temperaments.map((t) => (
               <p id={t}>
                 {getNames([t])}
-                <button onClick={(e) => deleteTemp(e, t)}>x</button>
+                <button  className = {estilo.btnclose} onClick={(e) => deleteTemp(e, t)}>x</button>
               </p>
             ))}
           </div>
           <br />
-          <button
+          <Button
             type="submit"
+            color = "inherit"
+            variant="contained"
             onClick={handleSubmit}
-            className={estilo.button}
+            href = 'http://localhost3000/home'
           >
             ¡Creat!
-          </button>
+          </Button>
         </form>
       </div>
     </div>

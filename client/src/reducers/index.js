@@ -13,7 +13,7 @@ const reducer = (state = initialState, action) =>{
          return {
         ...state,
         dogsLoaded: action.payload,
-        filter: "",
+        filter: action.payload,
       }
       case "GET_NAME":
       return{
@@ -24,32 +24,27 @@ const reducer = (state = initialState, action) =>{
       case "GET_TEMP":
             return {
                 ...state,
-                temps: action.payload
+            temps: action.payload
       }
       case "order_ZA":
         return {
             ...state,
-            dogsLoaded: action.payload
+            filter: action.payload
         }
     case "order_AZ":
         return {
             ...state,
-            dogsLoaded: action.payload
+            filter: action.payload
         }
     case "ORDER_LIGHT":
         return {
             ...state,
-            dogsLoaded: action.payload
+            filter: action.payload
         }
     case "ORDER_HEAVY":
         return {
             ...state,
-            dogsLoaded: action.payload
-        }
-    case "GET_TEMP":
-        return {
-            ...state,
-            temps: action.payload
+            filter: action.payload
         }
     case "GET_ID":
         let found = state.dogsLoaded.filter((element) => element.id === Number(action.payload) || element.id === action.payload);

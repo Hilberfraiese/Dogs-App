@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import Estilo from "./searchBar.module.css";
 import { Link } from "react-router-dom";
-import { FaPaw } from 'react-icons/fa';
+import { FaPaw } from "react-icons/fa";
 
 function SearchBar() {
   const [dogState, setdogState] = useState("");
@@ -11,9 +11,9 @@ function SearchBar() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    if(dogState.length<1){
-      return alert("Please enter a valid value for your search")
-    }else{
+    if (dogState.length < 1) {
+      return alert("Please enter a valid value for your search");
+    } else {
       dispatch(getName(dogState));
       setdogState("");
     }
@@ -21,18 +21,21 @@ function SearchBar() {
 
   return (
     <div className={Estilo.search}>
-      <input
+     
+     <input
         className={Estilo.input}
         type="text"
         placeholder="Name..."
         value={dogState}
         onChange={(e) => setdogState(e.target.value)}
       />
-      <button  className = {Estilo.btn} onClick={handleClick} type="submit">  
-      <Link to="/home/search" className={Estilo.Estilo}><div className={Estilo.icon}>
-      <FaPaw/>
-        </div>
-      </Link></button>
+      <button className={Estilo.btn} onClick={handleClick} type="submit">
+        <Link to="/home/search" className={Estilo.Estilo}>
+          <div className={Estilo.icon}>
+            <FaPaw />
+          </div>
+        </Link>
+      </button>
     </div>
   );
 }

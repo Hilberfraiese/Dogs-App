@@ -5,7 +5,6 @@ import style from "./dogsDetail.module.css";
 
 export default function DogDetail({ match }) {
   const { id } = match.params;
-  console.log("12", id);
 
   const dispatch = useDispatch();
 
